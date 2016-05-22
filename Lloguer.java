@@ -56,7 +56,7 @@ class Lloguer {
             case Vehicle.LUXE:
                 quantitat += dies * 6;
         }
-        return quantitat;
+        return quantitat * 30;
 	}
 
 }
