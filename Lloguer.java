@@ -56,7 +56,11 @@ class Lloguer {
             case Vehicle.LUXE:
                 quantitat += dies * 6;
         }
-        return quantitat;
+        return quantitat * 30;
+	}
+	
+	public int bonificacions(){
+		return (vehicle.getCategoria() == Vehicle.LUXE && dies>1 )?2:1;
 	}
 
 }
