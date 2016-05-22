@@ -1,31 +1,20 @@
-
+import org.junit.*;
+import static org.junit.Assert.*;    // importa una classe static
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
-public class GestorLloguersLite {
+public class TestGestorLloguersLite {
+    @Test
+    public void testInforme() {
+		String salida = "Informe de lloguers del client Edison (23920981S)\n";
+							salida+="\tVista Tata: 90.0€\n";
+							salida+="\tViste Tate: 120.0€\n";
+							salida+="\tVisti Tato: 360.0€\n";
+						salida+="Import a pagar: 570.0€\n";
+						salida+="Punts guanyats: 4\n";
 
-    public static String informe(Client c) {
-        Vector<Lloguer> lloguers = c.getLloguers();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyy");
-        Lloguer lloguer;
-        String resultat="Client: ";
-        resultat+=c.getNom()+"\n";
-        resultat+="\t"+c.getNif()+"\n";
-        resultat+="\t"+c.getTelefon()+"\n";
-        resultat+="Lloguers: "+lloguers.size()+"\n";
-        for (int i = 0; i < lloguers.size(); i++){
-			lloguer = lloguers.get(i);
-			resultat+="\t"+(i+1)+". vehicle: "+lloguer.getVehicle().getMarca()+" "+lloguer.getVehicle().getModel()+"\n";
-			resultat+="\t   data d'inici: "+dateFormat.format(lloguer.getData())+"\n";
-			resultat+="\t   dies llogats: "+lloguer.getDies()+"\n";
-		}
-		
-        return resultat;
-    }
-
-    public static void main(String args[]) {
         // demostració de construcció d'un vehicle de categoria BASIC
         Vehicle vehicleBasic = new Vehicle("Tata", "Vista", Vehicle.BASIC);
         Vehicle vehicleGeneral = new Vehicle("Tate", "Viste", Vehicle.GENERAL);
@@ -44,9 +33,15 @@ public class GestorLloguersLite {
             yo.afegeix(lloguerBasic);
             yo.afegeix(lloguerGeneral);
             yo.afegeix(lloguerLuxe);
-            System.out.println(yo.informe());
+            assertEquals(salida, yo.informe());
         } catch (ParseException ex) {
             System.out.println(ex.getMessage());
         }
+        
+        
+    }
+
+    public static void main(String args[]) {
+        org.junit.runner.JUnitCore.main("TestGestorLloguersLite");
     }
 }
