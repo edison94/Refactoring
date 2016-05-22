@@ -2,7 +2,7 @@
 import java.util.Vector;
 
 public class Client {
-
+	private static final double EUROS_PER_UNITAT_DE_COST = 30;
     private String nif;
     private String nom;
     private String telefon;
@@ -56,18 +56,32 @@ public class Client {
     }
 
 	public String informe() {
-		String resultat = "Informe de lloguers del client " +
+		return composaCapsalera() +
+			   composaDetall() +
+			   composaPeu();
+	}
+	
+	public String composaCapsalera(){
+		return "Informe de lloguers del client " +
 			getNom() +
 			" (" + getNif() + ")\n";
+	}
+	
+	public String composaDetall(){
+		String resultat="";
 		for (Lloguer lloguer: lloguers) {
 			// composa els resultats d'aquest lloguer
 			resultat += "\t" +
 				lloguer.getVehicle().getMarca() +
 				" " +
 				lloguer.getVehicle().getModel() + ": " +
-				lloguer.quantitat() + "€" + "\n";
+				(lloguer.quantitat() * EUROS_PER_UNITAT_DE_COST) + "€" + "\n";
 		}
-
+		return resultat;
+	}
+	
+	public String composaPeu() {
+		String resultat ="";
 		// afegeix informació final
 		resultat += "Import a pagar: " + importTotal() + "€\n" +
 			"Punts guanyats: " + bonificacionsTotals() + "\n";
@@ -77,7 +91,7 @@ public class Client {
 	public double importTotal(){
 		double total = 0;
 		for (Lloguer lloguer: lloguers) {
-			total += lloguer.quantitat();
+			total += lloguer.quantitat()* EUROS_PER_UNITAT_DE_COST;
 		}
 		return total;
 	}

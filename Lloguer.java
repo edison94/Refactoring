@@ -56,7 +56,7 @@ class Lloguer {
             case Vehicle.LUXE:
                 quantitat += dies * 6;
         }
-        return quantitat * 30;
+        return quantitat;
 	}
 	
 	public int bonificacions(){
