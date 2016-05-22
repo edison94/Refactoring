@@ -55,14 +55,14 @@ public class Client {
         return lloguers.contains(lloguer);
     }
 
-    public String informe() {
+	public String informe() {
 		double total = 0;
 		int bonificacions = 0;
 		String resultat = "Informe de lloguers del client " +
 			getNom() +
 			" (" + getNif() + ")\n";
 		for (Lloguer lloguer: lloguers) {
-			bonificacions += bonificacionsDeLloguer(lloguer);
+			bonificacions += lloguer.bonificacions();
 			// composa els resultats d'aquest lloguer
 			resultat += "\t" +
 				lloguer.getVehicle().getMarca() +
@@ -76,14 +76,6 @@ public class Client {
 		resultat += "Import a pagar: " + total + "€\n" +
 			"Punts guanyats: " + bonificacions + "\n";
 		return resultat;
-	}
-	
-	private int bonificacionsDeLloguer(Lloguer lloguer){
-		if (lloguer.getVehicle().getCategoria() == Vehicle.LUXE &&
-                 lloguer.getDies()>1 ) {
-             return 2;
-         }
-         return 1;
 	}
     
     public Vector<Lloguer> getLloguers(){
