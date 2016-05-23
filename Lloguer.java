@@ -2,7 +2,11 @@
 import java.util.Date;
 
 class Lloguer {
-
+	private static final int MINIM_DIES_BASIC = 3;
+	private static final int MINIM_DIES_GENERAL = 2;
+	private static final int QUANTITAT_VEHICLE_BASIC = 3;
+	private static final int QUANTITAT_VEHICLE_GENERAL = 4;
+	private static final int QUANTITAT_VEHICLE_LUXE = 6;
     private Date data;
     private int dies;
     private Vehicle vehicle;
@@ -42,19 +46,19 @@ class Lloguer {
 		double quantitat = 0;
         switch (vehicle.getCategoria()) {
             case Vehicle.BASIC:
-                quantitat += 3;
-                if (dies > 3) {
-                    quantitat += (dies - 3) * 1.5;
+                quantitat += QUANTITAT_VEHICLE_BASIC;
+                if (dies > MINIM_DIES_BASIC) {
+                    quantitat += (dies - MINIM_DIES_BASIC) * 1.5;
                 }
                 break;
             case Vehicle.GENERAL:
-                quantitat += 4;
-                if (dies > 2) {
-                    quantitat += (dies - 2) * 2.5;
+                quantitat += QUANTITAT_VEHICLE_GENERAL;
+                if (dies > MINIM_DIES_GENERAL) {
+                    quantitat += (dies - MINIM_DIES_GENERAL) * 2.5;
                 }
                 break;
             case Vehicle.LUXE:
-                quantitat += dies * 6;
+                quantitat += dies * QUANTITAT_VEHICLE_LUXE;
         }
         return quantitat;
 	}
