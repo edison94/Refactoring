@@ -1,8 +1,8 @@
 
 public class Vehicle {
-    public static final int BASIC = 1; 
-    public static final int GENERAL = 2; 
-    public static final int LUXE = 3; 
+    public static final int BASIC = 1;
+    public static final int GENERAL = 2;
+    public static final int LUXE = 3;
     private String model;
     private String marca;
     private int categoria;
@@ -12,7 +12,7 @@ public class Vehicle {
         this.marca = marca;
         this.categoria = categoria;
     }
-    
+
     public String getModel() {
         return model;
     }

@@ -21,7 +21,7 @@ public class GestorLloguersLite {
 			resultat+="\t   data d'inici: "+dateFormat.format(lloguer.getData())+"\n";
 			resultat+="\t   dies llogats: "+lloguer.getDies()+"\n";
 		}
-		
+
         return resultat;
     }
 
@@ -39,9 +39,9 @@ public class GestorLloguersLite {
         Lloguer lloguerLuxe = new Lloguer(date, 5, vehicleLuxe);
 
         Client yo = new Client("23920981S", "Edison", "684071952");
-        //yo.afegeix(lloguerBasic);
-        yo.afegeix(lloguerGeneral);
-        yo.afegeix(lloguerLuxe);
-        System.out.println(yo.informe());
+        yo.afegeix(lloguerBasic);
+        //yo.afegeix(lloguerGeneral);
+        //yo.afegeix(lloguerLuxe);
+        System.out.println(yo.informeHTML());
     }
 }

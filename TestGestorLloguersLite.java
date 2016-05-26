@@ -14,7 +14,7 @@ public class TestGestorLloguersLite {
 		Client yo = new Client("23920981S", "Edison", "684071952");
 		assertEquals(salida, yo.informe());
 	}
-	
+
 	@Test
     public void testInformeAmbUnLlogerBasicDeDosDies() throws ParseException{
 		String salida = "Informe de lloguers del client Edison (23920981S)\n";
@@ -29,7 +29,7 @@ public class TestGestorLloguersLite {
 		yo.afegeix(lloguerBasic);
 		assertEquals(salida, yo.informe());
 	}
-	
+
 	@Test
     public void testInformeAmbUnLlogerBasicDeDosCinc() throws ParseException{
 		String salida = "Informe de lloguers del client Edison (23920981S)\n";
@@ -44,7 +44,7 @@ public class TestGestorLloguersLite {
 		yo.afegeix(lloguerBasic);
 		assertEquals(salida, yo.informe());
 	}
-	
+
 	@Test
     public void testInformeAmbUnLlogerGeneralDeUnDia() throws ParseException{
 		String salida = "Informe de lloguers del client Edison (23920981S)\n";
@@ -59,7 +59,7 @@ public class TestGestorLloguersLite {
 		yo.afegeix(lloguerGeneral);
 		assertEquals(salida, yo.informe());
 	}
-	
+
 	@Test
     public void testInformeAmbUnLlogerGeneralDeCincDies() throws ParseException{
 		String salida = "Informe de lloguers del client Edison (23920981S)\n";
@@ -74,7 +74,7 @@ public class TestGestorLloguersLite {
 		yo.afegeix(lloguerGeneral);
 		assertEquals(salida, yo.informe());
 	}
-	
+
 	@Test
     public void testInformeAmbUnLlogerDeLuxeDeUnDia() throws ParseException{
 		String salida = "Informe de lloguers del client Edison (23920981S)\n";
@@ -89,7 +89,7 @@ public class TestGestorLloguersLite {
 		yo.afegeix(lloguerLuxe);
 		assertEquals(salida, yo.informe());
 	}
-	
+
 	@Test
     public void testInformeAmbUnLlogerDeLuxeDeUnCinc() throws ParseException{
 		String salida = "Informe de lloguers del client Edison (23920981S)\n";
@@ -104,7 +104,7 @@ public class TestGestorLloguersLite {
 		yo.afegeix(lloguerLuxe);
 		assertEquals(salida, yo.informe());
 	}
-	
+
 	@Test
     public void testInformeAmbUnLlogerDeGeneralYUnDeLuxeDeUnDia() throws ParseException{
 		String salida = "Informe de lloguers del client Edison (23920981S)\n";
@@ -123,7 +123,7 @@ public class TestGestorLloguersLite {
 		yo.afegeix(lloguerLuxe);
 		assertEquals(salida, yo.informe());
 	}
-	
+
 	@Test
     public void testInformeAmbUnLlogerDeGeneralYUnDeLuxeDeCincDies() throws ParseException{
 		String salida = "Informe de lloguers del client Edison (23920981S)\n";
@@ -142,7 +142,7 @@ public class TestGestorLloguersLite {
 		yo.afegeix(lloguerLuxe);
 		assertEquals(salida, yo.informe());
 	}
-	
+
     @Test
     public void testInformeAmbTresLloguers() throws ParseException{
 		String salida = "Informe de lloguers del client Edison (23920981S)\n";
@@ -169,6 +169,35 @@ public class TestGestorLloguersLite {
         yo.afegeix(lloguerGeneral);
         yo.afegeix(lloguerLuxe);
         assertEquals(salida, yo.informe());
+    }
+
+    @Test
+    public void testInformeHTMLAmbUnLloguer() throws ParseException{
+      String salida = "<h1>Informe de lloguers</h1>\n";
+      salida+="<p>Informe de lloguers del client <em>Edison</em> (<strong>23920981S</strong>)</p>\n";
+      salida+="<table>\n";
+      salida+="<tr><td><strong>Marca</strong></td><td><strong>Model</strong></td><td><strong>Import</strong></td></tr>\n";
+      salida+="\t<tr><td>Vista</td><td>Tata</td><td>180.0€</td></tr>\n";
+      salida+="<p>Import a pagar: <em>180.0€</em></p>\n";
+      salida+="<p>Punts guanyats: <em>1</em></p>\n";
+
+      // demostració de construcció d'un vehicle de categoria BASIC
+      Vehicle vehicleBasic = new Vehicle("Tata", "Vista", Vehicle.BASIC);
+      Vehicle vehicleGeneral = new Vehicle("Tate", "Viste", Vehicle.GENERAL);
+      Vehicle vehicleLuxe = new Vehicle("Tato", "Visti", Vehicle.LUXE);
+
+      // demostració de construccuó d'un lloguer amb una data
+      SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
+      Date date = dateFormat.parse("3/8/2013");
+      Lloguer lloguerBasic = new Lloguer(date, 5, vehicleBasic);
+      Lloguer lloguerGeneral = new Lloguer(date, 5, vehicleGeneral);
+      Lloguer lloguerLuxe = new Lloguer(date, 5, vehicleLuxe);
+
+      Client yo = new Client("23920981S", "Edison", "684071952");
+      yo.afegeix(lloguerBasic);
+      //yo.afegeix(lloguerGeneral);
+      //yo.afegeix(lloguerLuxe);
+        assertEquals(salida, yo.informeHTML());
     }
 
     public static void main(String args[]) {
